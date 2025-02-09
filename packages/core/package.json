@@ -1,0 +1,27 @@
+{
+  "name": "etholog",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Koen Gommers",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "pnpm build --watch",
+    "check-types": "tsc --noEmit",
+    "check-format": "prettier src/ --check",
+    "fix-format": "prettier src/ --write",
+    "lint": "eslint src/",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "rollup": "^4.28.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "typescript": "^5.7.2"
+  }
+}
