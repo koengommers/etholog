@@ -8,7 +8,7 @@ type SyncStorageTransportOptions = {
   maxLogs?: number;
 };
 
-const DEFAULT_KEY = "ETHOLOG_SYNC_STORAGE";
+const DEFAULT_KEY = "ETHOLOG_STORAGE";
 
 export function syncStorageTransport(options: SyncStorageTransportOptions) {
   const key = options.key || DEFAULT_KEY;
