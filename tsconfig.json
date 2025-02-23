@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "paths": {
+      "etholog": [
+        "./packages/core/src"
+      ],
+      "@etholog/async-storage-transport": [
+        "./packages/async-storage-transport/src"
+      ],
+      "@etholog/sync-storage-transport": [
+        "./packages/sync-storage-transport/src"
+      ]
+    }
+  }
+}
