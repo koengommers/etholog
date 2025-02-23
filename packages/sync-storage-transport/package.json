@@ -1,0 +1,36 @@
+{
+  "name": "@etholog/sync-storage-transport",
+  "version": "0.1.2",
+  "description": "Sync storage transport for Etholog",
+  "homepage": "https://github.com/koengommers/etholog#readme",
+  "author": "Koen Gommers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koengommers/etholog.git",
+    "directory": "packages/sync-storage-transport"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "pnpm build --watch",
+    "check-types": "tsc --noEmit",
+    "check-format": "prettier src/ --check",
+    "fix-format": "prettier src/ --write",
+    "lint": "eslint src/",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "etholog": "workspace:*",
+    "rollup": "^4.28.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "etholog": "workspace:^"
+  }
+}
