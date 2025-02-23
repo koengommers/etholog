@@ -1,26 +1,30 @@
-# @etholog/sync-storage-transport
+# @etholog/sentry-react-native-transport
 
-A transport that logs to a sync storage like localStorage.
+Adds logs as breadcrumbs to Sentry for React Native.
 
 ## Installation
 
 ```bash
-npm install @etholog/sync-storage-transport
+npm install @etholog/sentry-react-native-transport
 ```
 
-## Usage
+## Example usage
 
 ```typescript
 import { createLogger } from "etholog";
-import { syncStorageTransport, createJSONStorage } from "@etholog/sync-storage-transport";
+import { sentryReactNativeTransport } from "@etholog/sentry-react-native-transport";
 
 const logger = createLogger({
   transports: [
-    syncStorageTransport({
-      storage: createJSONStorage(() => localStorage),
-    }),
+    sentryReactNativeTransport(),
   ],
 });
 
 logger.info("Hello world!");
 ```
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `levelMap` | `Record<Level, Sentry.SeverityLevel>` | `{ error: "error", warn: "warning", info: "info", debug: "debug" }` | Maps Etholog levels to Sentry levels.
