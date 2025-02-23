@@ -39,12 +39,6 @@ Etholog supports the following log levels:
 
 Etholog comes with one built-in transport, the `consoleTransport`. There are various additional transports available as separate packages.
 
-### Console
-
-The `consoleTransport` function creates a transport that outputs logs to the console.
-
-### Additional transports
-
 | Package | Description |
 | --- | --- |
 | [`@etholog/sentry-react-native-transport`](packages/sentry-react-native-transport) | Adds logs as breadcrumbs to Sentry for React Native |
