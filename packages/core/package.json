@@ -1,6 +1,6 @@
 {
   "name": "etholog",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A universal customizable logger",
   "keywords": [
     "log",
