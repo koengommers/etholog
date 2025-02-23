@@ -1,8 +1,25 @@
 {
   "name": "etholog",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "A universal customizable logger",
+  "keywords": [
+    "log",
+    "logs",
+    "logging",
+    "logger",
+    "node",
+    "react-native",
+    "browser",
+    "debug",
+    "json"
+  ],
+  "homepage": "https://github.com/koengommers/etholog#readme",
   "author": "Koen Gommers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koengommers/etholog.git",
+    "directory": "packages/core"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -16,7 +33,6 @@
     "lint": "eslint src/",
     "test": "vitest"
   },
-  "keywords": [],
   "devDependencies": {
     "esbuild": "^0.24.0",
     "rollup": "^4.28.1",
