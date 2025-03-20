@@ -38,7 +38,13 @@ export function createLogger(options: LoggerOptions) {
       data: Object.keys(combinedData).length > 0 ? combinedData : undefined,
     };
 
-    options.transports.forEach((transport) => transport.process(log));
+    options.transports.forEach((transport) => {
+      try {
+        transport.process(log);
+      } catch (error) {
+        console.warn("Failed to process log", error);
+      }
+    });
   }
 
   const logger: PlainLogger = {
