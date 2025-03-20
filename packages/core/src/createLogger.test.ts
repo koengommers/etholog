@@ -84,4 +84,15 @@ describe("createLogger", () => {
       data: { foo: "bar" },
     });
   });
+
+  it("should catch errors thrown by transports", () => {
+    const transport = createTransport(() => {
+      throw new Error("oops");
+    });
+    const logger = createLogger({
+      transports: [transport],
+    });
+
+    expect(() => logger.info("hello")).not.toThrow();
+  });
 });
