@@ -1,6 +1,6 @@
 {
   "name": "@etholog/sync-storage-transport",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Sync storage transport for Etholog",
   "homepage": "https://github.com/koengommers/etholog#readme",
   "author": "Koen Gommers",
