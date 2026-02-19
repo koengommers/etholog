@@ -1,12 +1,14 @@
 # @etholog/sentry-react-native-transport
 
-Adds logs as breadcrumbs to Sentry for React Native.
+Send logs to Sentry for React Native.
 
 ## Installation
 
 ```bash
 npm install @etholog/sentry-react-native-transport
 ```
+
+Make sure Sentry is set up with logs enabled: https://docs.sentry.io/platforms/react-native/logs/
 
 ## Example usage
 
