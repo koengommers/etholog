@@ -7,38 +7,33 @@ import { sentryReactNativeTransport } from "./sentryReactNativeTransport";
 vi.mock("@sentry/react-native");
 
 describe("sentryReactNativeTransport", () => {
-  it("should add a breadcrumb", () => {
+  it("should add a log", () => {
     const transport = sentryReactNativeTransport();
     const logger = createLogger({ transports: [transport] });
 
     logger.info("foo");
 
-    expect(Sentry.addBreadcrumb).toHaveBeenCalledWith({
-      message: "foo",
-      level: "info",
-    });
+    expect(Sentry.logger.info).toHaveBeenCalledWith("foo", undefined);
   });
 
-  it("should add a breadcrumb with data", () => {
+  it("should add a log with data", () => {
     const transport = sentryReactNativeTransport();
     const logger = createLogger({ transports: [transport] });
 
     logger.info("foo", { bar: "baz" });
 
-    expect(Sentry.addBreadcrumb).toHaveBeenCalledWith({
-      message: "foo",
-      level: "info",
-      data: { bar: "baz" },
+    expect(Sentry.logger.info).toHaveBeenCalledWith("foo", {
+      bar: "baz",
     });
   });
 
-  it("should add level in accordance with the levelMap", () => {
+  it("should use level in accordance with the levelMap", () => {
     const transport = sentryReactNativeTransport({
       levelMap: {
-        debug: "log",
-        info: "log",
-        warn: "log",
-        error: "log",
+        debug: "info",
+        info: "info",
+        warn: "info",
+        error: "info",
       },
     });
     const logger = createLogger({ transports: [transport] });
@@ -48,21 +43,9 @@ describe("sentryReactNativeTransport", () => {
     logger.warn("baz");
     logger.error("qux");
 
-    expect(Sentry.addBreadcrumb).toHaveBeenCalledWith({
-      message: "foo",
-      level: "log",
-    });
-    expect(Sentry.addBreadcrumb).toHaveBeenCalledWith({
-      message: "bar",
-      level: "log",
-    });
-    expect(Sentry.addBreadcrumb).toHaveBeenCalledWith({
-      message: "baz",
-      level: "log",
-    });
-    expect(Sentry.addBreadcrumb).toHaveBeenCalledWith({
-      message: "qux",
-      level: "log",
-    });
+    expect(Sentry.logger.info).toHaveBeenCalledWith("foo", undefined);
+    expect(Sentry.logger.info).toHaveBeenCalledWith("bar", undefined);
+    expect(Sentry.logger.info).toHaveBeenCalledWith("baz", undefined);
+    expect(Sentry.logger.info).toHaveBeenCalledWith("qux", undefined);
   });
 });

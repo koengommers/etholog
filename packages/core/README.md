@@ -41,7 +41,7 @@ Etholog comes with one built-in transport, the `consoleTransport`. There are var
 
 | Package | Description |
 | --- | --- |
-| [`@etholog/sentry-react-native-transport`](packages/sentry-react-native-transport) | Adds logs as breadcrumbs to Sentry for React Native |
+| [`@etholog/sentry-react-native-transport`](packages/sentry-react-native-transport) | Send logs to Sentry for React Native |
 | [`@etholog/async-storage-transport`](packages/async-storage-transport) | Stores logs in asynchronous storage, such as AsyncStorage for React Native |
 | [`@etholog/sync-storage-transport`](packages/sync-storage-transport) | Stores logs in synchronous storage, such as localStorage |
 
