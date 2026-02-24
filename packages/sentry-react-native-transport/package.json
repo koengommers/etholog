@@ -1,6 +1,6 @@
 {
   "name": "@etholog/sentry-react-native-transport",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Sentry React Native for Etholog",
   "homepage": "https://github.com/koengommers/etholog#readme",
   "author": "Koen Gommers",
