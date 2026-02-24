@@ -1,10 +1,13 @@
+import { LEVELS } from "../constants";
 import { createTransport } from "../createTransport";
-import { Level } from "../types";
+import { Level, Log } from "../types";
 
 type LevelMap = Record<Level, "log" | "info" | "warn" | "error" | "debug">;
 
 type ConsoleTransportOptions = {
   levelMap?: LevelMap;
+  /** The minimum level to log. If defined, logs below this level will be omitted. */
+  level?: Level;
 };
 
 const DEFAULT_LEVEL_MAP: LevelMap = {
@@ -16,7 +19,17 @@ const DEFAULT_LEVEL_MAP: LevelMap = {
 
 export function consoleTransport(options?: ConsoleTransportOptions) {
   const levelMap = options?.levelMap ?? DEFAULT_LEVEL_MAP;
+
+  function shouldHandle(log: Log) {
+    return options?.level === undefined
+      ? true
+      : LEVELS[log.level] >= LEVELS[options.level];
+  }
+
   return createTransport((log) => {
+    if (!shouldHandle(log)) {
+      return;
+    }
     const logFnName = log.level in levelMap ? levelMap[log.level] : "log";
     if (log.data) {
       console[logFnName](log.message, log.data);
