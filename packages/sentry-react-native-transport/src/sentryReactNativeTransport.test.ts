@@ -48,4 +48,21 @@ describe("sentryReactNativeTransport", () => {
     expect(Sentry.logger.info).toHaveBeenCalledWith("baz", undefined);
     expect(Sentry.logger.info).toHaveBeenCalledWith("qux", undefined);
   });
+
+  it("should omit logs below the level", () => {
+    const transport = sentryReactNativeTransport({
+      level: "warn",
+    });
+    const logger = createLogger({ transports: [transport] });
+
+    logger.debug("foo");
+    logger.info("bar");
+    logger.warn("baz");
+    logger.error("qux");
+
+    expect(Sentry.logger.debug).not.toHaveBeenCalled();
+    expect(Sentry.logger.info).not.toHaveBeenCalled();
+    expect(Sentry.logger.warn).toHaveBeenCalledWith("baz", undefined);
+    expect(Sentry.logger.error).toHaveBeenCalledWith("qux", undefined);
+  });
 });
