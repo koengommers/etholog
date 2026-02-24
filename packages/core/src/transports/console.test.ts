@@ -74,4 +74,28 @@ describe("consoleTransport", () => {
     expect(warnSpy).toHaveBeenCalledWith("baz");
     expect(errorSpy).toHaveBeenCalledWith("qux");
   });
+
+  it("should not output logs if the transport is disabled", () => {
+    const transport = consoleTransport({
+      enabled: false,
+    });
+    const logger = createLogger({
+      transports: [transport],
+    });
+
+    const debugSpy = vi.spyOn(console, "debug");
+    const infoSpy = vi.spyOn(console, "info");
+    const warnSpy = vi.spyOn(console, "warn");
+    const errorSpy = vi.spyOn(console, "error");
+
+    logger.debug("foo");
+    logger.info("bar");
+    logger.warn("baz");
+    logger.error("qux");
+
+    expect(debugSpy).not.toHaveBeenCalled();
+    expect(infoSpy).not.toHaveBeenCalled();
+    expect(warnSpy).not.toHaveBeenCalled();
+    expect(errorSpy).not.toHaveBeenCalled();
+  });
 });
