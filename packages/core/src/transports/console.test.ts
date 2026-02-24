@@ -50,4 +50,28 @@ describe("consoleTransport", () => {
     expect(consoleSpy).toHaveBeenCalledWith("baz");
     expect(consoleSpy).toHaveBeenCalledWith("qux");
   });
+
+  it("should omit logs below the level", () => {
+    const transport = consoleTransport({
+      level: "warn",
+    });
+    const logger = createLogger({
+      transports: [transport],
+    });
+
+    const debugSpy = vi.spyOn(console, "debug");
+    const infoSpy = vi.spyOn(console, "info");
+    const warnSpy = vi.spyOn(console, "warn");
+    const errorSpy = vi.spyOn(console, "error");
+
+    logger.debug("foo");
+    logger.info("bar");
+    logger.warn("baz");
+    logger.error("qux");
+
+    expect(debugSpy).not.toHaveBeenCalled();
+    expect(infoSpy).not.toHaveBeenCalled();
+    expect(warnSpy).toHaveBeenCalledWith("baz");
+    expect(errorSpy).toHaveBeenCalledWith("qux");
+  });
 });
