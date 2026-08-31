@@ -22,7 +22,7 @@ type Logger = PlainLogger & ProxiedMethods;
 
 export function createLogger(options: LoggerOptions) {
   function log(level: Level, message: string, data?: LogData) {
-    if (options.level && LEVELS[level] > LEVELS[options.level]) {
+    if (options.level && LEVELS[level] < LEVELS[options.level]) {
       return;
     }
 
