@@ -15,3 +15,9 @@ export type Transport = {
   process: (log: Log) => void;
   flush: () => Promise<void>;
 };
+
+/**
+ * Transforms a log before transports receive it. Returning `null` drops the log.
+ * Processors run in order, synchronously, after level filtering.
+ */
+export type Processor = (log: Log) => Log | null;
