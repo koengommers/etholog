@@ -13,5 +13,5 @@ export type Log = {
 
 export type Transport = {
   process: (log: Log) => void;
-  flush: () => Promise<void>;
+  flush?: () => Promise<void>;
 };

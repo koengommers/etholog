@@ -49,7 +49,9 @@ export function createLogger(options: LoggerOptions) {
 
   const logger: PlainLogger = {
     flush: async () => {
-      const promises = options.transports.map((transport) => transport.flush());
+      const promises = options.transports.map((transport) =>
+        transport.flush?.(),
+      );
       await Promise.allSettled(promises);
     },
     child: (data: LogData) => {

@@ -37,7 +37,16 @@ Etholog supports the following log levels:
 
 ## Transports
 
-Etholog comes with one built-in transport, the `consoleTransport`. There are various additional transports available as separate packages.
+Etholog comes with several transports built into the core, and additional transports are available as separate packages.
+
+### Built-in transports
+
+| Transport | Description |
+| --- | --- |
+| [`consoleTransport`](packages/core/src/transports/console.ts) | Outputs logs to the console |
+| [`fingersCrossedTransport`](packages/core/src/transports/fingers-crossed.ts) | Buffers logs until a log at or above the specified `actionLevel` is encountered. |
+
+### Additional transports
 
 | Package | Description |
 | --- | --- |

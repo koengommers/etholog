@@ -1,11 +1,14 @@
 import { Log } from "./types";
 
-export function createTransport(
+export function createTransport<TAdditional extends Record<string, unknown>>(
   process: (log: Log) => void,
-  options?: { flush?: () => Promise<void> },
-) {
-  return {
+  additional?: TAdditional & {
+    flush?: () => Promise<void>;
+  },
+): { process: (log: Log) => void } & TAdditional {
+  const base = {
     process,
-    flush: options?.flush ?? (() => Promise.resolve()),
   };
+
+  return Object.assign(base, additional);
 }
