@@ -35,3 +35,41 @@ jobs:
 
       - name: Test
         run: pnpm -r test
+
+      # attw inspects built output, so the build must run before it.
+      - name: Build
+        run: pnpm -r build
+
+      - name: Check packaging
+        run: pnpm -r --no-bail exec publint
+
+      - name: Check published types
+        run: pnpm -r exec attw --pack .
+
+  changeset:
+    name: Changeset present
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # Fails the PR if it changes a package without saying how to release it.
+      # PRs touching no package at all (CI, root config) pass automatically.
+      # For a package change that genuinely shouldn't release, use
+      # `pnpm changeset --empty`.
+      - name: Require a changeset
+        run: pnpm changeset status --since=origin/${{ github.base_ref }}
